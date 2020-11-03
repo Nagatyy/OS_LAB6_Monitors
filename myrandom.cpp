@@ -92,7 +92,7 @@ public:
     void run(){
         for (int j = 0; j < total; j++){
             int random = rand();
-            monitor.write(random);
+            monitor -> write(random);
         }
     }
 };
@@ -114,7 +114,7 @@ public:
         int item;
         int nread = 0;
         while (1){
-            m.read(item);
+            monitor -> read(item);
             nread++;           
             if (item < 0) 
                 break;              
