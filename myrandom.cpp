@@ -115,6 +115,9 @@ public:
         int nread = 0;
         while (1){
             monitor -> read(item);
+            ctrl.lock();
+            cout << "Consumer Thread " << ID << "read a number\n"; 
+            ctrl.unlock();
             nread++;           
             if (item < 0) 
                 break;              
