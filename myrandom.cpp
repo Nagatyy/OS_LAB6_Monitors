@@ -51,6 +51,7 @@ public:
         }
 
         // exit condition -> write -1s
+
         cout << numOfNumbersProducedSoFar << endl;
         if(numOfNumbersProducedSoFar == totalNumbersToBeProduced){
             buffer[in++] = -1;
@@ -61,6 +62,8 @@ public:
             buffer[in++] = item;
             in %= BUFFERSIZE;
             currentNumOfItemsInBuffer++;
+            numOfNumbersProducedSoFar++;
+
 
         }
 
