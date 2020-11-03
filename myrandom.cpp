@@ -32,7 +32,7 @@ public:
 
     void read(int& item){
         QMutexLocker locker(&mutex);
-        while(currentNumOfItemsInBuffer == 0 && numOfNumbersProducedSoFar != totalNumbersToBeProduced){
+        while(currentNumOfItemsInBuffer == 0){
             cout << "No Items to read!\n";
             consumerWait.wait(&mutex);
         }
