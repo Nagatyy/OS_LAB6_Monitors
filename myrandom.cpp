@@ -32,7 +32,7 @@ public:
 
     void read(int& item){
         QMutexLocker locker(&mutex);
-        while(currentNumOfItemsInBuffer == 0){
+        while(currentNumOfItemsInBuffer == 0 && numOfNumbersProducedSoFar != totalNumbersToBeProduced){
             cout << "No Items to read!\n";
             consumerWait.wait(&mutex);
         }
@@ -45,7 +45,7 @@ public:
 
     void write(int item){
         QMutexLocker locker(&mutex);
-        while(currentNumOfItemsInBuffer == BUFFERSIZE){
+        while(currentNumOfItemsInBuffer == BUFFERSIZE && numOfNumbersProducedSoFar != totalNumbersToBeProduced){
             cout << "Buffer is full\n";
             producerWait.wait(&mutex);
         }
@@ -63,8 +63,6 @@ public:
             in %= BUFFERSIZE;
             currentNumOfItemsInBuffer++;
             numOfNumbersProducedSoFar++;
-
-
         }
 
         consumerWait.wakeAll();
