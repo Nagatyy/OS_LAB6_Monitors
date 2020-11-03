@@ -93,6 +93,9 @@ public:
         for (int j = 0; j < total; j++){
             int random = rand();
             monitor -> write(random);
+            ctrl.lock();
+            cout << "Producer Thread " << ID << "wrote a number\n"; 
+            ctrl.unlock();
         }
     }
 };
