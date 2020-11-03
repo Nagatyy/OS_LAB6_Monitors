@@ -39,7 +39,7 @@ public:
         item = buffer[out];
         currentNumOfItemsInBuffer--;
         out = (out + 1) % BUFFERSIZE;
-        producerWait.wakeOne();
+        producerWait.wakeAll();
 
     }
 
@@ -63,7 +63,7 @@ public:
 
         }
 
-        consumerWait.wakeOne();
+        consumerWait.wakeAll();
 
     }
 
