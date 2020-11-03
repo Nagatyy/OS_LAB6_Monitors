@@ -145,19 +145,19 @@ int main(int argc, char** argv){
     Consumer* c[N];                 // N consumer threads
 
     int numbersToProduce;
-    int totalNumbersAllocated = 0;   
+    int totalNumbersProduced = 0;   // to hold the number of numbers produced so far  
 
     for(int i = 0; i < M; i++){
 
         // the last producer thread will proeduce NUM - total numbers produced
         if(i == M-1){ 
-            p[i] = new Producer(i, NUM - totalNumbersAllocated, &monitor);
+            p[i] = new Producer(i, NUM - totalNumbersProduced, &monitor);
             p[i] -> start();
         }
         else {
-            numbersToProduce = rand() % (NUM - totalNumbersAllocated);
-            totalNumbersAllocated+= numbersToProduce;
-            p[i] = new Producer(i, NUM - totalNumbersAllocated, &monitor);
+            numbersToProduce = rand() % (NUM - totalNumbersProduced);
+            totalNumbersProduced+= numbersToProduce;
+            p[i] = new Producer(i, numbersToProduce, &monitor);
             p[i] -> start();
         }
     }
